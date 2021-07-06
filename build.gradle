@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'de.nicolube'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots/" }
+    //maven { url = "https://repo.aikar.co/content/groups/aikar/" }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    compileOnly("org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT")
+    compileOnly 'org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT'
+    //compile "co.aikar:acf-paper:0.5.0-SNAPSHOT"
+    compile group: 'com.j256.ormlite', name: 'ormlite-jdbc', version: '5.6'
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+shadowJar {
+
+    minimize()
+    relocate('kotlin', 'de.nicolube.devsadditions.libs.kotlin')
+    relocate('org.intellij', 'de.nicolube.devsadditions.libs.intellij')
+    relocate('org.jetbrains', 'de.nicolube.devsadditions.libs.jetbrains')
+    relocate('com.j256.ormlite', 'de.nicolube.devsadditions.libs.ormlite')
+    relocate('org.mariadb.jdbc', 'de.nicolube.devsadditions.libs.jdbc')
+    exclude("mariadb.properties")
+}

@@ -1,0 +1,29 @@
+{
+  "emergency": {
+    "levels": {
+      "1": {
+        "ontime": 0,
+        "votes": 0
+      },
+      "1": {
+        "ontime": 0,
+        "votes": 3
+      },
+      "2": {
+        "ontime": 10,
+        "votes": 6
+      },
+      "3": {
+        "ontime": 20,
+        "votes": 3
+      },
+      "4": {
+        "ontime": 50,
+        "votes": 3
+      },
+      "5": {
+        "permission": "devsadditions.emergency.lvl.5"
+      }
+    }
+  }
+}
